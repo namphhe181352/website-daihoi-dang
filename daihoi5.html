@@ -30,8 +30,19 @@
       --body: 'Roboto', 'Segoe UI', sans-serif;
     }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
     body {
       font-family: var(--body);
       background: var(--cream);
@@ -39,16 +50,22 @@
       line-height: 1.75;
       overflow-x: hidden;
     }
-    img { max-width: 100%; height: auto; display: block; }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
 
     .back-btn {
       position: fixed;
-      top: 1rem; left: 1rem;
+      top: 1rem;
+      left: 1rem;
       z-index: 100;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background: rgba(139,0,0,0.85);
+      background: rgba(139, 0, 0, 0.85);
       backdrop-filter: blur(8px);
       color: var(--gold);
       text-decoration: none;
@@ -57,11 +74,20 @@
       letter-spacing: 1px;
       padding: 0.5rem 1rem;
       border-radius: 50px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
       transition: background 0.3s, transform 0.3s;
     }
-    .back-btn:hover { background: var(--red-dark); transform: scale(1.05); }
-    .back-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+    .back-btn:hover {
+      background: var(--red-dark);
+      transform: scale(1.05);
+    }
+
+    .back-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
 
     .banner {
       position: relative;
@@ -76,15 +102,18 @@
       color: var(--white);
       overflow: hidden;
     }
+
     .banner::before {
       content: '★';
       position: absolute;
       font-size: 40vw;
-      color: rgba(255,215,0,0.05);
-      top: 50%; left: 50%;
+      color: rgba(255, 215, 0, 0.05);
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
     }
+
     .banner__year {
       display: inline-block;
       border: 2px solid var(--gold);
@@ -98,25 +127,30 @@
       margin-bottom: 1.25rem;
       animation: fadeIn 0.8s ease-out;
     }
+
     .banner__title {
       font-family: var(--heading);
       font-weight: 900;
       font-size: clamp(1.5rem, 5.5vw, 2.8rem);
       line-height: 1.2;
-      text-shadow: 2px 4px 12px rgba(0,0,0,0.3);
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
       margin-bottom: 0.75rem;
       animation: fadeInUp 0.8s ease-out 0.15s both;
     }
+
     .banner__subtitle {
       font-size: clamp(0.85rem, 2.5vw, 1.05rem);
-      color: rgba(255,255,255,0.8);
+      color: rgba(255, 255, 255, 0.8);
       max-width: 540px;
       animation: fadeInUp 0.8s ease-out 0.3s both;
     }
+
     .banner__divider {
-      width: 60px; height: 3px;
+      width: 60px;
+      height: 3px;
       background: var(--gold);
-      border: none; border-radius: 2px;
+      border: none;
+      border-radius: 2px;
       margin: 1.25rem auto 0;
       animation: fadeInUp 0.8s ease-out 0.25s both;
     }
@@ -128,10 +162,11 @@
       position: relative;
       z-index: 1;
     }
+
     .banner-image img {
       width: 100%;
       border-radius: 16px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     }
 
     .content {
@@ -146,7 +181,11 @@
       transform: translateY(30px);
       transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
-    .info-block.visible { opacity: 1; transform: translateY(0); }
+
+    .info-block.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .info-block__label {
       display: inline-flex;
@@ -159,9 +198,11 @@
       font-weight: 700;
       margin-bottom: 0.6rem;
     }
+
     .info-block__label::before {
       content: '';
-      width: 20px; height: 2px;
+      width: 20px;
+      height: 2px;
       background: var(--gold-dark);
       border-radius: 1px;
     }
@@ -184,21 +225,26 @@
       background: var(--white);
       border-radius: 14px;
       padding: 1.25rem;
-      box-shadow: 0 4px 20px rgba(44,24,16,0.07);
+      box-shadow: 0 4px 20px rgba(44, 24, 16, 0.07);
       border-left: 4px solid var(--gold-dark);
       margin-top: 0.75rem;
     }
+
     .highlight-card p {
       font-size: 0.9rem;
       color: var(--text);
       line-height: 1.75;
     }
-    .highlight-card strong { color: var(--red-dark); }
+
+    .highlight-card strong {
+      color: var(--red-dark);
+    }
 
     .strategy-list {
       list-style: none;
       margin-top: 0.75rem;
     }
+
     .strategy-list li {
       position: relative;
       padding-left: 1.5rem;
@@ -207,77 +253,134 @@
       color: var(--text-light);
       line-height: 1.7;
     }
+
     .strategy-list li::before {
       content: '★';
       position: absolute;
-      left: 0; top: 0;
+      left: 0;
+      top: 0;
       color: var(--gold-dark);
       font-size: 0.75rem;
     }
-    .strategy-list li strong { color: var(--red-dark); font-weight: 600; }
+
+    .strategy-list li strong {
+      color: var(--red-dark);
+      font-weight: 600;
+    }
 
     .meaning-section {
-      background: linear-gradient(135deg, rgba(200,16,46,0.04), rgba(255,215,0,0.06));
+      background: linear-gradient(135deg, rgba(200, 16, 46, 0.04), rgba(255, 215, 0, 0.06));
       border-radius: 14px;
       padding: 1.5rem;
       margin-top: 0.5rem;
-      border: 1px solid rgba(218,165,32,0.15);
+      border: 1px solid rgba(218, 165, 32, 0.15);
     }
+
     .meaning-section p {
       font-size: 0.92rem;
       color: var(--text);
       line-height: 1.8;
       font-style: italic;
     }
-    .meaning-section strong { color: var(--red-dark); font-style: normal; }
+
+    .meaning-section strong {
+      color: var(--red-dark);
+      font-style: normal;
+    }
 
     .site-footer {
       background: var(--red-dark);
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
       text-align: center;
       padding: 2rem 1.25rem;
       font-size: 0.8rem;
     }
+
     .site-footer__brand {
       color: var(--gold);
       font-family: var(--heading);
       font-size: 1rem;
       margin-bottom: 0.3rem;
     }
-    .site-footer a { color: var(--gold); text-decoration: none; }
+
+    .site-footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
 
     /* Page Transition */
     .page-transition {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: 9999;
       pointer-events: none;
       opacity: 0;
       background: var(--red-dark);
       transition: opacity 0.4s ease;
     }
+
     .page-transition.active {
       opacity: 1;
       pointer-events: all;
     }
+
     body {
       animation: pageEnter 0.5s ease-out;
     }
+
     @keyframes pageEnter {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .info-block { opacity: 1; transform: none; transition: none; }
-      .banner__year, .banner__title, .banner__subtitle { animation: none !important; }
-      body { animation: none !important; }
+      .info-block {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .banner__year,
+      .banner__title,
+      .banner__subtitle {
+        animation: none !important;
+      }
+
+      body {
+        animation: none !important;
+      }
     }
   </style>
 </head>
@@ -288,7 +391,9 @@
   <div class="page-transition" id="pageTransition"></div>
 
   <a href="index.html" class="back-btn" id="backBtn">
-    <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+    <svg viewBox="0 0 24 24">
+      <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+    </svg>
     Trở về
   </a>
 
@@ -302,8 +407,7 @@
   </header>
 
   <div class="banner-image">
-    <img src="images/dai-hoi-5.png"
-      alt="Đại hội V – Nông nghiệp và phát triển kinh tế" />
+    <img src="images/dai-hoi-5.png" alt="Đại hội V – Nông nghiệp và phát triển kinh tế" />
   </div>
 
   <main class="content">
@@ -368,10 +472,17 @@
       <h2 class="info-block__title">Bước đệm cho Đổi Mới 1986</h2>
       <div class="meaning-section">
         <p>
-          <strong>Đại hội V thể hiện sự bám sát thực tiễn</strong>, từng bước điều chỉnh
-          tư duy quản lý nhà nước và kinh tế chính trị cho phù hợp với quy luật khách quan.
-          Đây là <strong>bước đệm tư duy vô cùng quan trọng</strong> để dẫn tới công cuộc
-          Đổi Mới toàn diện vào Đại hội VI (1986) sau này.
+          <strong>Đẩy mạnh công nghiệp hóa xã hội chủ nghĩa, xây dựng cơ sở vật chất - kỹ thuật của chủ nghĩa xã hội,
+            đưa nền kinh tế nước ta từ sản xuất nhỏ lên sản xuất lớn xã hội chủ nghĩa. Ưu tiên phát triển công nghiệp
+            nặng một cách hợp lý trên cơ sở phát triển nông nghiệp và công nghiệp nhẹ, kết hợp xây dựng công nghiệp và
+            nông nghiệp cả nước thành một cơ cấu kinh tế công - nông nghiệp; vừa xây dựng kinh tế trung ương vừa phát
+            triển kinh tế địa phương, kết hợp kinh tế trung ương với kinh tế địa phương trong một cơ cấu kinh tế quốc
+            dân thống nhất; kết hợp phát triển lực lượng sản xuất với xác lập và hoàn thiện quan hệ sản xuất mới; kết
+            hợp kinh tế với quốc phòng; tăng cường quan hệ phân công, hợp tác, tương trợ với các nước xã hội chủ nghĩa
+            anh em trên cơ sở chủ nghĩa quốc tế xã hội chủ nghĩa, đồng thời phát triển quan hệ kinh tế với các nước khác
+            trên cơ sở giữ vững độc lập, chủ quyền và các bên cùng có lợi; làm cho nước Việt Nam trở thành một nước xã
+            hội chủ nghĩa có kinh tế công - nông nghiệp hiện đại, văn hóa và khoa học, kỹ thuật tiên tiến, quốc phòng
+            vững mạnh, có đời sống văn minh, hạnh phúc".
         </p>
       </div>
     </div>
@@ -413,4 +524,5 @@
   </script>
 
 </body>
+
 </html>
