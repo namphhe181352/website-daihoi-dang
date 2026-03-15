@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dòng Chảy Lịch Sử Việt Nam</title>
+  <meta name="description"
+    content="Hành trình phát triển của đất nước qua các kỳ Đại hội Đảng III, IV và V — Mô hình sa bàn Dòng chảy lịch sử Việt Nam." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES — Tone đỏ sẫm & vàng sao
+       ============================================================ */
+    :root {
+      --color-red-dark: #8B0000;
+      --color-red: #C8102E;
+      --color-red-light: #E63946;
+      --color-gold: #FFD700;
+      --color-gold-dark: #DAA520;
+      --color-cream: #FDF8F0;
+      --color-cream-dark: #F5ECDC;
+      --color-text: #2C1810;
+      --color-text-light: #5C4033;
+      --color-white: #FFFFFF;
+
+      --font-heading: 'Playfair Display', 'Georgia', serif;
+      --font-body: 'Roboto', 'Segoe UI', sans-serif;
+
+      --timeline-line-width: 3px;
+      --timeline-dot-size: 18px;
+      --timeline-dot-size-lg: 22px;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-cream);
+      color: var(--color-text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ============================================================
+       HEADER / HERO
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      /* safe viewport for mobile */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1.25rem;
+      background:
+        linear-gradient(170deg,
+          var(--color-red-dark) 0%,
+          var(--color-red) 50%,
+          #6B0F1A 100%);
+      color: var(--color-white);
+      overflow: hidden;
+    }
+
+    /* Decorative star background */
+    .hero::before {
+      content: '★';
+      position: absolute;
+      font-size: 35vw;
+      color: rgba(255, 215, 0, 0.06);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero__badge {
+      display: inline-block;
+      border: 2px solid var(--color-gold);
+      border-radius: 50px;
+      padding: 0.35rem 1.25rem;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 1.5rem;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .hero__title {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: clamp(1.75rem, 6vw, 3.5rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .hero__title span {
+      display: block;
+      color: var(--color-gold);
+      font-size: 0.6em;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-top: 0.3em;
+    }
+
+    .hero__desc {
+      max-width: 520px;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease-out 0.5s both;
+    }
+
+    .hero__scroll-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-gold);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      animation: fadeInUp 1s ease-out 0.8s both;
+    }
+
+    .hero__scroll-cta .arrow {
+      width: 24px;
+      height: 24px;
+      border-right: 2px solid var(--color-gold);
+      border-bottom: 2px solid var(--color-gold);
+      transform: rotate(45deg);
+      animation: bounceArrow 2s ease-in-out infinite;
+    }
+
+    /* Gold divider line */
+    .hero__divider {
+      width: 60px;
+      height: 3px;
+      background: var(--color-gold);
+      border: none;
+      border-radius: 2px;
+      margin: 1rem auto 1.5rem;
+      animation: fadeInUp 1s ease-out 0.35s both;
+    }
+
+    /* ============================================================
+       SECTION INTRO
+       ============================================================ */
+    .section-intro {
+      text-align: center;
+      padding: 3rem 1.25rem 1.5rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .section-intro__label {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-red);
+      background: rgba(200, 16, 46, 0.08);
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+
+    .section-intro__heading {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--color-red-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-intro__text {
+      font-size: 0.95rem;
+      color: var(--color-text-light);
+    }
+
+    /* ============================================================
+       TIMELINE
+       ============================================================ */
+    .timeline {
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    /* Main vertical line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 0;
+      bottom: 0;
+      width: var(--timeline-line-width);
+      background: linear-gradient(to bottom,
+          transparent,
+          var(--color-red) 5%,
+          var(--color-red) 95%,
+          transparent);
+    }
+
+    /* ============================================================
+       TIMELINE ITEM
+       ============================================================ */
+    .timeline-item {
+      position: relative;
+      padding-left: 64px;
+      margin-bottom: 3rem;
+      /* Animation initial state */
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Timeline dot */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: calc(28px + var(--timeline-line-width) / 2);
+      top: 6px;
+      width: var(--timeline-dot-size);
+      height: var(--timeline-dot-size);
+      background: var(--color-gold);
+      border: 3px solid var(--color-red-dark);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .timeline-item.visible::before {
+      animation: pulseDot 2s ease-in-out 0.7s;
+    }
+
+    /* Year badge */
+    .timeline-item__year {
+      display: inline-block;
+      background: var(--color-red-dark);
+      color: var(--color-gold);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.25rem 0.9rem;
+      border-radius: 50px;
+      margin-bottom: 0.75rem;
+      letter-spacing: 1px;
+    }
+
+    /* Card */
+    .timeline-item__card {
+      background: var(--color-white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow:
+        0 4px 20px rgba(44, 24, 16, 0.08),
+        0 1px 3px rgba(44, 24, 16, 0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .timeline-item__card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 12px 36px rgba(44, 24, 16, 0.12),
+        0 2px 6px rgba(44, 24, 16, 0.08);
+    }
+
+    /* -------------------------------------------------------
+       PLACEHOLDER ẢNH — Thay ảnh tại thuộc tính src của <img>
+       Kích thước khuyến nghị: 800×500px, tỉ lệ 16:10
+       ------------------------------------------------------- */
+    .timeline-item__image-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: var(--color-cream-dark);
+    }
+
+    .timeline-item__image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .timeline-item__card:hover .timeline-item__image-wrap img {
+      transform: scale(1.05);
+    }
+
+    /* Gradient overlay on image */
+    .timeline-item__image-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.35), transparent);
+      pointer-events: none;
+    }
+
+    .timeline-item__body {
+      padding: 1.25rem 1.25rem 1.5rem;
+    }
+
+    .timeline-item__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.1rem, 3vw, 1.35rem);
+      color: var(--color-red-dark);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .timeline-item__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--color-text-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-item__label::before {
+      content: '';
+      width: 8px;
+      height: 2px;
+      background: var(--color-gold-dark);
+      border-radius: 1px;
+    }
+
+    .timeline-item__desc {
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      margin-bottom: 1rem;
+    }
+
+    .timeline-item__meaning {
+      position: relative;
+      padding: 0.85rem 1rem;
+      background: linear-gradient(135deg, rgba(200, 16, 46, 0.04), rgba(255, 215, 0, 0.06));
+      border-left: 3px solid var(--color-gold-dark);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.85rem;
+      color: var(--color-text);
+      line-height: 1.65;
+    }
+
+    .timeline-item__meaning strong {
+      color: var(--color-red-dark);
+      font-weight: 700;
+    }
+
+    /* ============================================================
+       ENDING ORNAMENT
+       ============================================================ */
+    .timeline-end {
+      text-align: center;
+      padding: 2rem 1.25rem 0;
+      position: relative;
+    }
+
+    .timeline-end__star {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--color-red-dark);
+      color: var(--color-gold);
+      font-size: 1.5rem;
+      border-radius: 50%;
+      box-shadow: 0 4px 16px rgba(139, 0, 0, 0.25);
+      margin-bottom: 1rem;
+    }
+
+    .timeline-end__text {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--color-red-dark);
+      letter-spacing: 1px;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .site-footer {
+      background: var(--color-red-dark);
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      padding: 2rem 1.25rem;
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .site-footer__brand {
+      color: var(--color-gold);
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .site-footer a {
+      color: var(--color-gold);
+      text-decoration: none;
+    }
+
+    /* ============================================================
+       KEYFRAME ANIMATIONS
+       ============================================================ */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounceArrow {
+
+      0%,
+      100% {
+        transform: rotate(45deg) translateY(0);
+      }
+
+      50% {
+        transform: rotate(45deg) translateY(8px);
+      }
+    }
+
+    @keyframes pulseDot {
+      0% {
+        box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.15);
+      }
+
+      50% {
+        box-shadow: 0 0 0 10px rgba(139, 0, 0, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.15);
+      }
+    }
+
+    /* ============================================================
+       DESKTOP / TABLET — >= 640px
+       ============================================================ */
+    @media (min-width: 640px) {
+      .timeline::before {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        width: 47%;
+        padding-left: 0;
+      }
+
+      .timeline-item:nth-child(odd) {
+        margin-left: 0;
+        text-align: right;
+      }
+
+      .timeline-item:nth-child(even) {
+        margin-left: 53%;
+      }
+
+      .timeline-item::before {
+        left: auto;
+      }
+
+      .timeline-item:nth-child(odd)::before {
+        right: -36px;
+        left: auto;
+        transform: translateX(50%);
+      }
+
+      .timeline-item:nth-child(even)::before {
+        left: -36px;
+        transform: translateX(-50%);
+      }
+
+      .timeline-item__body {
+        padding: 1.5rem;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-item__meaning {
+        border-left: none;
+        border-right: 3px solid var(--color-gold-dark);
+        border-radius: 8px 0 0 8px;
+        text-align: left;
+      }
+    }
+
+    /* ============================================================
+       ACCESSIBILITY — Reduced Motion
+       ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      .timeline-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .hero__badge,
+      .hero__title,
+      .hero__desc,
+      .hero__scroll-cta {
+        animation: none !important;
+      }
+
+      .hero__scroll-cta .arrow {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================================================
+       HEADER / HERO SECTION
+       ======================================================== -->
+  <header class="hero" id="hero">
+    <div class="hero__badge">Mô hình sa bàn</div>
+    <h1 class="hero__title">
+      Dòng Chảy Lịch Sử Việt Nam
+      <span>Qua các kỳ Đại hội Đảng</span>
+    </h1>
+    <hr class="hero__divider" />
+    <p class="hero__desc">
+      Hành trình phát triển của đất nước qua các kỳ Đại hội Đảng III, IV và V
+      — từ xây dựng Chủ nghĩa Xã hội, giải phóng miền Nam, đến phát triển kinh tế đất nước.
+    </p>
+    <div class="hero__scroll-cta">
+      <span>CUỘN XUỐNG ĐỂ KHÁM PHÁ</span>
+      <div class="arrow"></div>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       SECTION INTRO
+       ======================================================== -->
+  <section class="section-intro">
+    <div class="section-intro__label">Dòng thời gian</div>
+    <h2 class="section-intro__heading">Những Mốc Son Lịch Sử</h2>
+    <p class="section-intro__text">
+      Mỗi kỳ Đại hội đánh dấu một bước ngoặt của đất nước, từ công cuộc xây dựng miền Bắc,
+      thống nhất Tổ quốc, đến ổn định và phát triển kinh tế.
+    </p>
+  </section>
+
+  <!-- ========================================================
+       TIMELINE
+       ======================================================== -->
+  <section class="timeline" id="timeline">
+
+    <!-- =====================================================
+         MỐC 1 — ĐẠI HỘI III (1960)
+         ===================================================== -->
+    <article class="timeline-item">
+      <div class="timeline-item__year">1960</div>
+      <div class="timeline-item__card">
+        <!--
+          ★ THAY ẢNH ĐẠI HỘI III:
+          Thay đường dẫn trong thuộc tính src bên dưới bằng ảnh thực tế của bạn.
+          Kích thước khuyến nghị: 800×500px (tỉ lệ 16:10).
+        -->
+        <div class="timeline-item__image-wrap">
+          <img src="images/dai-hoi-3.png"
+            alt="Đại hội III – Hình ảnh công nghiệp hóa miền Bắc: bánh răng, ống khói, cờ Việt Nam, xe tải"
+            loading="lazy" />
+        </div>
+        <div class="timeline-item__body">
+          <div class="timeline-item__label">Đại hội Đảng lần thứ III</div>
+          <h3 class="timeline-item__title">
+            Xây Dựng Chủ Nghĩa Xã Hội Ở Miền Bắc
+          </h3>
+          <p class="timeline-item__desc">
+            Hình ảnh bánh răng, ống khói nhà máy, cờ Việt Nam và xe tải chở hàng
+            khắc họa sinh động công cuộc công nghiệp hóa Xã hội Chủ nghĩa.
+            Đây là giai đoạn miền Bắc dồn sức xây dựng kinh tế, kiến thiết
+            cơ sở vật chất kỹ thuật.
+          </p>
+          <div class="timeline-item__meaning">
+            <strong>Ý nghĩa:</strong> Đánh dấu bước ngoặt khi Đảng đề ra đường lối
+            tiến hành đồng thời hai nhiệm vụ chiến lược: Xây dựng Chủ nghĩa Xã hội
+            ở miền Bắc và hoàn thành cách mạng dân tộc dân chủ nhân dân ở miền Nam.
+            Miền Bắc chính thức trở thành hậu phương lớn vững chắc cho tiền tuyến
+            lớn miền Nam.
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- =====================================================
+         MỐC 2 — ĐẠI HỘI IV (1976)
+         ===================================================== -->
+    <article class="timeline-item">
+      <div class="timeline-item__year">1976</div>
+      <div class="timeline-item__card">
+        <!--
+          ★ THAY ẢNH ĐẠI HỘI IV:
+          Thay đường dẫn trong thuộc tính src bên dưới bằng ảnh thực tế của bạn.
+          Kích thước khuyến nghị: 800×500px (tỉ lệ 16:10).
+        -->
+        <div class="timeline-item__image-wrap">
+          <img src="images/dai-hoi-4.png"
+            alt="Đại hội IV – Xe tăng húc đổ cổng Dinh Độc Lập, người dân hân hoan chào đón hòa bình" loading="lazy" />
+        </div>
+        <div class="timeline-item__body">
+          <div class="timeline-item__label">Đại hội Đảng lần thứ IV</div>
+          <h3 class="timeline-item__title">
+            Đất Nước Thống Nhất — Kỷ Nguyên Mới
+          </h3>
+          <p class="timeline-item__desc">
+            Khoảnh khắc lịch sử xe tăng húc đổ cổng Dinh Độc Lập cùng niềm hân hoan
+            của người dân trong cờ hoa rợp trời. Sa bàn tái hiện lại ngày non sông
+            liền một dải, kết thúc thắng lợi cuộc kháng chiến chống Mỹ cứu nước.
+          </p>
+          <div class="timeline-item__meaning">
+            <strong>Ý nghĩa:</strong> Tổng kết thắng lợi vĩ đại của dân tộc,
+            hoàn thành thống nhất Tổ quốc về mặt nhà nước. Đại hội hoạch định
+            đường lối chung: Đưa cả nước tiến nhanh, tiến mạnh, tiến vững chắc
+            lên Chủ nghĩa Xã hội, mở ra một kỷ nguyên mới cho Việt Nam.
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- =====================================================
+         MỐC 3 — ĐẠI HỘI V (1982)
+         ===================================================== -->
+    <article class="timeline-item">
+      <div class="timeline-item__year">1982</div>
+      <div class="timeline-item__card">
+        <!--
+          ★ THAY ẢNH ĐẠI HỘI V:
+          Thay đường dẫn trong thuộc tính src bên dưới bằng ảnh thực tế của bạn.
+          Kích thước khuyến nghị: 800×500px (tỉ lệ 16:10).
+        -->
+        <div class="timeline-item__image-wrap">
+          <img src="images/dai-hoi-5.png" alt="Đại hội V – Ruộng lúa, nông dân, trâu bò và nhà tranh yên bình"
+            loading="lazy" />
+        </div>
+        <div class="timeline-item__body">
+          <div class="timeline-item__label">Đại hội Đảng lần thứ V</div>
+          <h3 class="timeline-item__title">
+            Phát Triển Kinh Tế — Ổn Định Cuộc Sống
+          </h3>
+          <p class="timeline-item__desc">
+            Khung cảnh đồng lúa vàng, nông dân, gia súc và nếp nhà tranh phản ánh
+            bức tranh sản xuất thiết thực. Mô hình thể hiện sự chuyển dịch trọng tâm
+            của đất nước về các giá trị nền tảng cốt lõi để duy trì và ổn định
+            đời sống xã hội.
+          </p>
+          <div class="timeline-item__meaning">
+            <strong>Ý nghĩa:</strong> Đứng trước những khó khăn của nền kinh tế,
+            Đại hội V đánh dấu bước điều chỉnh chiến lược quan trọng: Xác định
+            nông nghiệp là mặt trận hàng đầu, đẩy mạnh sản xuất hàng tiêu dùng
+            và tiếp tục xây dựng công nghiệp nặng có trọng điểm nhằm từng bước
+            ổn định, cải thiện đời sống nhân dân.
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ========================================================
+       ENDING ORNAMENT
+       ======================================================== -->
+  <div class="timeline-end">
+    <div class="timeline-end__star">★</div>
+    <p class="timeline-end__text">— Hành trình vẫn tiếp tục —</p>
+  </div>
+
+  <!-- ========================================================
+       FOOTER
+       ======================================================== -->
+  <footer class="site-footer">
+    <p class="site-footer__brand">Dòng Chảy Lịch Sử Việt Nam</p>
+    <p>Dự án mô hình sa bàn &mdash; 2026</p>
+    <!--
+      ★ THAY TÊN TÁC GIẢ:
+      Thay "Tên tác giả" bên dưới bằng tên thật của bạn.
+    -->
+  </footer>
+
+  <!-- ========================================================
+       JAVASCRIPT — Scroll Reveal Animation
+       ======================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /**
+       * IntersectionObserver để kích hoạt animation
+       * khi các mốc timeline xuất hiện trong viewport.
+       */
+      const timelineItems = document.querySelectorAll('.timeline-item');
+
+      if ('IntersectionObserver' in window) {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px 0px -60px 0px',
+          threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target); // chỉ animate 1 lần
+            }
+          });
+        }, observerOptions);
+
+        timelineItems.forEach(function (item) {
+          observer.observe(item);
+        });
+      } else {
+        // Fallback: hiển thị tất cả nếu trình duyệt cũ
+        timelineItems.forEach(function (item) {
+          item.classList.add('visible');
+        });
+      }
+
+      /**
+       * Smooth scroll khi nhấn vào nút "Cuộn xuống" ở Hero
+       */
+      const scrollCta = document.querySelector('.hero__scroll-cta');
+      if (scrollCta) {
+        scrollCta.addEventListener('click', function () {
+          var timeline = document.getElementById('timeline');
+          if (timeline) {
+            timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+        scrollCta.style.cursor = 'pointer';
+      }
+    })();
+  </script>
+
+</body>
+
+</html>
