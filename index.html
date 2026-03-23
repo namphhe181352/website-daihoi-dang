@@ -92,6 +92,18 @@
       overflow: hidden;
     }
 
+    .timeline-fireworks {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 40;
+      opacity: 0.55;
+      mix-blend-mode: screen;
+      filter: saturate(1.2);
+    }
+
     /* Decorative star background */
     .hero::before {
       content: '★';
@@ -422,7 +434,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      margin-top: 1.15rem;
+      margin-top: 0.75rem;
       padding: 0.55rem 1.25rem;
       background: var(--color-red-dark);
       color: var(--color-gold);
@@ -431,6 +443,8 @@
       letter-spacing: 1px;
       text-decoration: none;
       border-radius: 50px;
+      position: relative;
+      top: -4px;
       transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
       box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2);
     }
@@ -607,7 +621,7 @@
       }
 
       .timeline-item:nth-child(odd) .timeline-item__cta {
-        float: right;
+        float: none;
       }
     }
 
@@ -615,6 +629,10 @@
        ACCESSIBILITY — Reduced Motion
        ============================================================ */
     @media (prefers-reduced-motion: reduce) {
+      .timeline-fireworks {
+        display: none;
+      }
+
       .timeline-item {
         opacity: 1;
         transform: none;
@@ -643,6 +661,7 @@
 
   <!-- Page Transition Overlay -->
   <div class="page-transition" id="pageTransition"></div>
+  <canvas class="timeline-fireworks" id="timelineFireworks" aria-hidden="true"></canvas>
 
   <!-- ========================================================
        HEADER / HERO SECTION
@@ -693,9 +712,12 @@
           Kích thước khuyến nghị: 800×500px (tỉ lệ 16:10).
         -->
         <div class="timeline-item__image-wrap">
-          <img src="images/dai-hoi-3.png"
-            alt="Đại hội III – Hình ảnh công nghiệp hóa miền Bắc: bánh răng, ống khói, cờ Việt Nam, xe tải"
-            loading="lazy" />
+          <picture>
+            <source srcset="images/webp/daihoi3-1.webp" type="image/webp" />
+            <img src="images/daihoi3-1.jpg"
+              alt="Toàn cảnh Đại hội Đảng lần thứ III năm 1960"
+              loading="lazy" decoding="async" width="1600" height="900" />
+          </picture>
         </div>
         <div class="timeline-item__body">
           <div class="timeline-item__label">Đại hội Đảng lần thứ III</div>
@@ -703,10 +725,8 @@
             Xây Dựng Chủ Nghĩa Xã Hội Ở Miền Bắc
           </h3>
           <p class="timeline-item__desc">
-            Hình ảnh bánh răng, ống khói nhà máy, cờ Việt Nam và xe tải chở hàng
-            khắc họa sinh động công cuộc công nghiệp hóa Xã hội Chủ nghĩa.
-            Đây là giai đoạn miền Bắc dồn sức xây dựng kinh tế, kiến thiết
-            cơ sở vật chất kỹ thuật.
+            Đại hội xác định đường lối xây dựng Chủ nghĩa Xã hội ở miền Bắc,
+            đồng thời đấu tranh giải phóng miền Nam và tiến tới thống nhất đất nước.
           </p>
 
           <a href="daihoi3.html" class="timeline-item__cta" id="cta-daihoi3">
@@ -729,8 +749,11 @@
           Kích thước khuyến nghị: 800×500px (tỉ lệ 16:10).
         -->
         <div class="timeline-item__image-wrap">
-          <img src="images/dai-hoi-4.png"
-            alt="Đại hội IV – Xe tăng húc đổ cổng Dinh Độc Lập, người dân hân hoan chào đón hòa bình" loading="lazy" />
+          <picture>
+            <source srcset="images/webp/daihoi4-1.webp" type="image/webp" />
+            <img src="images/daihoi4-1.jpg"
+              alt="Toàn cảnh Đại hội Đảng lần thứ IV năm 1976" loading="lazy" decoding="async" width="1600" height="900" />
+          </picture>
         </div>
         <div class="timeline-item__body">
           <div class="timeline-item__label">Đại hội Đảng lần thứ IV</div>
@@ -738,9 +761,8 @@
             Đất Nước Thống Nhất — Kỷ Nguyên Mới
           </h3>
           <p class="timeline-item__desc">
-            Khoảnh khắc lịch sử xe tăng húc đổ cổng Dinh Độc Lập cùng niềm hân hoan
-            của người dân trong cờ hoa rợp trời. Sa bàn tái hiện lại ngày non sông
-            liền một dải, kết thúc thắng lợi cuộc kháng chiến chống Mỹ cứu nước.
+            Sau Đại thắng mùa Xuân 1975, Đại hội IV mở ra kỷ nguyên hòa bình,
+            thống nhất và xác định phương hướng đưa cả nước đi lên Chủ nghĩa Xã hội.
           </p>
 
           <a href="daihoi4.html" class="timeline-item__cta" id="cta-daihoi4">
@@ -763,8 +785,11 @@
           Kích thước khuyến nghị: 800×500px (tỉ lệ 16:10).
         -->
         <div class="timeline-item__image-wrap">
-          <img src="images/dai-hoi-5.png" alt="Đại hội V – Ruộng lúa, nông dân, trâu bò và nhà tranh yên bình"
-            loading="lazy" />
+          <picture>
+            <source srcset="images/webp/daihoi5-1.webp" type="image/webp" />
+            <img src="images/daihoi5-1.png" alt="Toàn cảnh Đại hội Đảng lần thứ V năm 1982"
+              loading="lazy" decoding="async" width="1600" height="900" />
+          </picture>
         </div>
         <div class="timeline-item__body">
           <div class="timeline-item__label">Đại hội Đảng lần thứ V</div>
@@ -772,10 +797,8 @@
             Phát Triển Kinh Tế — Ổn Định Cuộc Sống
           </h3>
           <p class="timeline-item__desc">
-            Khung cảnh đồng lúa vàng, nông dân, gia súc và nếp nhà tranh phản ánh
-            bức tranh sản xuất thiết thực. Mô hình thể hiện sự chuyển dịch trọng tâm
-            của đất nước về các giá trị nền tảng cốt lõi để duy trì và ổn định
-            đời sống xã hội.
+            Đại hội V tập trung vào nhiệm vụ ổn định kinh tế - xã hội,
+            coi nông nghiệp là mặt trận hàng đầu và từng bước điều chỉnh tư duy phát triển.
           </p>
 
           <a href="daihoi5.html" class="timeline-item__cta" id="cta-daihoi5">
@@ -811,6 +834,7 @@
   <!-- ========================================================
        JAVASCRIPT — Scroll Reveal Animation
        ======================================================== -->
+  <script src="fireworks-timeline.js"></script>
   <script>
     (function () {
       'use strict';
@@ -860,6 +884,26 @@
         });
         scrollCta.style.cursor = 'pointer';
       }
+
+    })();
+
+    /* ── Timeline-Synced Fireworks ── */
+    (function () {
+      if (!window.initTimelineFireworks) {
+        return;
+      }
+
+      window.initTimelineFireworks({
+        canvasId: 'timelineFireworks',
+        beatMs: 720,
+        phases: [
+          { watchSelector: '#hero', anchorSelector: '#hero' },
+          { watchSelector: '.timeline-item:nth-of-type(1)', anchorSelector: '.timeline-item:nth-of-type(1)' },
+          { watchSelector: '.timeline-item:nth-of-type(2)', anchorSelector: '.timeline-item:nth-of-type(2)' },
+          { watchSelector: '.timeline-item:nth-of-type(3)', anchorSelector: '.timeline-item:nth-of-type(3)' },
+          { watchSelector: '.timeline-end', anchorSelector: '.timeline-end' }
+        ]
+      });
     })();
 
     /* ── Page Transition ── */

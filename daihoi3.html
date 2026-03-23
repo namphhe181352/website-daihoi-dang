@@ -103,7 +103,8 @@
       text-align: center;
       padding: 4rem 1.5rem 3rem;
       background:
-        linear-gradient(170deg, var(--red-dark) 0%, var(--red) 50%, #6B0F1A 100%);
+        linear-gradient(165deg, rgba(32, 7, 6, 0.78), rgba(139, 0, 0, 0.56)),
+        url('images/webp/daihoi3-1.webp') center / cover no-repeat;
       color: var(--white);
       overflow: hidden;
     }
@@ -158,21 +159,6 @@
       border-radius: 2px;
       margin: 1.25rem auto 0;
       animation: fadeInUp 0.8s ease-out 0.25s both;
-    }
-
-    /* ── Banner Image ── */
-    .banner-image {
-      width: 100%;
-      max-width: 720px;
-      margin: -2rem auto 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .banner-image img {
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     }
 
     /* ── Content Area ── */
@@ -299,6 +285,61 @@
       font-style: normal;
     }
 
+    /* ── Full-Width Story Photos ── */
+    .full-bleed-gallery {
+      width: min(1160px, 94vw);
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 0.9rem;
+    }
+
+    .full-bleed-photo {
+      margin: 0 0 1rem;
+      background: #111;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 26px rgba(44, 24, 16, 0.14);
+    }
+
+    .full-bleed-photo picture,
+    .full-bleed-photo img {
+      display: block;
+      width: 100%;
+    }
+
+    .full-bleed-photo img {
+      aspect-ratio: 21 / 9;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .full-bleed-photo figcaption {
+      padding: 0.75rem 1.25rem 0.95rem;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text-light);
+      background: var(--white);
+      border-top: 1px solid rgba(218, 165, 32, 0.2);
+    }
+
+    .source-note {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .source-note a {
+      color: var(--red-dark);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--red-dark);
+    }
+
+    .source-note a:hover {
+      color: var(--red);
+      border-bottom-color: var(--red);
+    }
+
     /* ── Footer ── */
     .site-footer {
       background: var(--red-dark);
@@ -318,6 +359,18 @@
     .site-footer a {
       color: var(--gold);
       text-decoration: none;
+    }
+
+    .timeline-fireworks {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 40;
+      opacity: 0.55;
+      mix-blend-mode: screen;
+      filter: saturate(1.2);
     }
 
     /* ── Animations ── */
@@ -379,6 +432,10 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .timeline-fireworks {
+        display: none;
+      }
+
       .info-block {
         opacity: 1;
         transform: none;
@@ -395,6 +452,12 @@
         animation: none !important;
       }
     }
+
+    @media (max-width: 768px) {
+      .full-bleed-photo img {
+        aspect-ratio: 16 / 10;
+      }
+    }
   </style>
 </head>
 
@@ -402,6 +465,7 @@
 
   <!-- Page Transition Overlay -->
   <div class="page-transition" id="pageTransition"></div>
+  <canvas class="timeline-fireworks" id="timelineFireworks" aria-hidden="true"></canvas>
 
   <!-- Back Button -->
   <a href="index.html" class="back-btn" id="backBtn">
@@ -420,11 +484,6 @@
       Xây dựng Chủ nghĩa Xã hội ở miền Bắc, đấu tranh giải phóng miền Nam
     </p>
   </header>
-
-  <!-- Banner Image -->
-  <div class="banner-image">
-    <img src="images/dai-hoi-3.png" alt="Đại hội III – Công nghiệp hóa miền Bắc" />
-  </div>
 
   <!-- Content -->
   <main class="content">
@@ -496,6 +555,39 @@
       </div>
     </div>
 
+    <div class="info-block" id="b6">
+      <div class="info-block__label">Tư liệu hình ảnh</div>
+      <h2 class="info-block__title">Đại hội III và khí thế toàn dân vừa sản xuất, vừa chiến đấu</h2>
+      <div class="full-bleed-gallery">
+        <figure class="full-bleed-photo">
+          <picture>
+            <source srcset="images/webp/daihoi3-1.webp" type="image/webp" />
+            <img src="images/daihoi3-1.jpg" alt="Toàn cảnh hội trường Đại hội đại biểu toàn quốc lần thứ III năm 1960" loading="lazy" decoding="async" width="1600" height="900" />
+          </picture>
+          <figcaption>Phiên họp trọng thể tại Đại hội III, nơi xác lập đường lối chiến lược cho cách mạng cả nước.</figcaption>
+        </figure>
+
+        <figure class="full-bleed-photo">
+          <picture>
+            <source srcset="images/webp/daihoi3-3.webp" type="image/webp" />
+            <img src="images/daihoi3-3.jpg" alt="Lãnh đạo bàn phương án tác chiến và chỉ đạo cách mạng miền Nam" loading="lazy" decoding="async" width="1600" height="900" />
+          </picture>
+          <figcaption>Công tác chỉ đạo chiến lược thể hiện quyết tâm bảo vệ miền Bắc, chi viện cho tiền tuyến miền Nam.</figcaption>
+        </figure>
+
+        <figure class="full-bleed-photo">
+          <picture>
+            <source srcset="images/webp/daihoi3-2.webp" type="image/webp" />
+            <img src="images/daihoi3-2.jpg" alt="Nhân dân miền Bắc vận chuyển lương thực trên kênh mương phục vụ sản xuất" loading="lazy" decoding="async" width="1600" height="900" />
+          </picture>
+          <figcaption>Nhân dân miền Bắc lao động sản xuất và vận chuyển lương thực trong giai đoạn thực hiện Kế hoạch 5 năm lần thứ nhất.</figcaption>
+        </figure>
+      </div>
+      <p class="source-note">
+        Nguồn tư liệu tham khảo: <a href="https://www.vietnamplus.vn/dai-hoi-dang-lan-thu-iii-xay-dung-cnxh-o-mien-bac-dau-tranh-thong-nhat-nuoc-nha-post1087089.vnp" target="_blank" rel="noopener noreferrer">VietnamPlus - Đại hội Đảng lần thứ III</a>.
+      </p>
+    </div>
+
   </main>
 
   <!-- Footer -->
@@ -504,6 +596,7 @@
     <p>Dự án mô hình sa bàn &mdash; 2026</p>
   </footer>
 
+  <script src="fireworks-timeline.js"></script>
   <script>
     (function () {
       'use strict';
@@ -528,6 +621,22 @@
           var href = this.getAttribute('href');
           overlay.classList.add('active');
           setTimeout(function () { window.location.href = href; }, 400);
+        });
+      }
+
+      if (window.initTimelineFireworks) {
+        window.initTimelineFireworks({
+          canvasId: 'timelineFireworks',
+          beatMs: 760,
+          phases: [
+            { watchSelector: '.banner', anchorSelector: '.banner' },
+            { watchSelector: '#b1', anchorSelector: '#b1' },
+            { watchSelector: '#b2', anchorSelector: '#b2' },
+            { watchSelector: '#b3', anchorSelector: '#b3' },
+            { watchSelector: '#b4', anchorSelector: '#b4' },
+            { watchSelector: '#b5', anchorSelector: '#b5' },
+            { watchSelector: '#b6', anchorSelector: '#b6' }
+          ]
         });
       }
     })();

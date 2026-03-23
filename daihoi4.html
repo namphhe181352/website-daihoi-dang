@@ -98,7 +98,9 @@
       justify-content: center;
       text-align: center;
       padding: 4rem 1.5rem 3rem;
-      background: linear-gradient(170deg, var(--red-dark) 0%, var(--red) 50%, #6B0F1A 100%);
+      background:
+        linear-gradient(165deg, rgba(32, 7, 6, 0.78), rgba(139, 0, 0, 0.56)),
+        url('images/webp/daihoi4-1.webp') center / cover no-repeat;
       color: var(--white);
       overflow: hidden;
     }
@@ -153,20 +155,6 @@
       border-radius: 2px;
       margin: 1.25rem auto 0;
       animation: fadeInUp 0.8s ease-out 0.25s both;
-    }
-
-    .banner-image {
-      width: 100%;
-      max-width: 720px;
-      margin: -2rem auto 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .banner-image img {
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     }
 
     .content {
@@ -288,6 +276,60 @@
       font-style: normal;
     }
 
+    .full-bleed-gallery {
+      width: min(1160px, 94vw);
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 0.9rem;
+    }
+
+    .full-bleed-photo {
+      margin: 0 0 1rem;
+      background: #111;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 26px rgba(44, 24, 16, 0.14);
+    }
+
+    .full-bleed-photo picture,
+    .full-bleed-photo img {
+      display: block;
+      width: 100%;
+    }
+
+    .full-bleed-photo img {
+      aspect-ratio: 21 / 9;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .full-bleed-photo figcaption {
+      padding: 0.75rem 1.25rem 0.95rem;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text-light);
+      background: var(--white);
+      border-top: 1px solid rgba(218, 165, 32, 0.2);
+    }
+
+    .source-note {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .source-note a {
+      color: var(--red-dark);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--red-dark);
+    }
+
+    .source-note a:hover {
+      color: var(--red);
+      border-bottom-color: var(--red);
+    }
+
     .site-footer {
       background: var(--red-dark);
       color: rgba(255, 255, 255, 0.7);
@@ -306,6 +348,18 @@
     .site-footer a {
       color: var(--gold);
       text-decoration: none;
+    }
+
+    .timeline-fireworks {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 40;
+      opacity: 0.55;
+      mix-blend-mode: screen;
+      filter: saturate(1.2);
     }
 
     /* Page Transition */
@@ -366,6 +420,10 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .timeline-fireworks {
+        display: none;
+      }
+
       .info-block {
         opacity: 1;
         transform: none;
@@ -382,6 +440,12 @@
         animation: none !important;
       }
     }
+
+    @media (max-width: 768px) {
+      .full-bleed-photo img {
+        aspect-ratio: 16 / 10;
+      }
+    }
   </style>
 </head>
 
@@ -389,6 +453,7 @@
 
   <!-- Page Transition Overlay -->
   <div class="page-transition" id="pageTransition"></div>
+  <canvas class="timeline-fireworks" id="timelineFireworks" aria-hidden="true"></canvas>
 
   <a href="index.html" class="back-btn" id="backBtn">
     <svg viewBox="0 0 24 24">
@@ -405,10 +470,6 @@
       Hoàn thành thống nhất Tổ quốc, cả nước đi lên Chủ nghĩa Xã hội
     </p>
   </header>
-
-  <div class="banner-image">
-    <img src="images/dai-hoi-4.png" alt="Đại hội IV – Xe tăng húc đổ cổng Dinh Độc Lập" />
-  </div>
 
   <main class="content">
 
@@ -479,6 +540,55 @@
       </div>
     </div>
 
+    <div class="info-block" id="b6">
+      <div class="info-block__label">Tư liệu hình ảnh</div>
+      <h2 class="info-block__title">Không khí thống nhất đất nước và xây dựng thời kỳ mới</h2>
+      <div class="full-bleed-gallery">
+        <figure class="full-bleed-photo">
+          <picture>
+            <source srcset="images/webp/daihoi4-1.webp" type="image/webp" />
+            <img src="images/daihoi4-1.jpg" alt="Toàn cảnh Đại hội đại biểu toàn quốc lần thứ IV năm 1976" loading="lazy" decoding="async" width="1600" height="900" />
+          </picture>
+          <figcaption>Đại hội IV tổng kết toàn thắng và xác định đường lối đưa cả nước đi lên Chủ nghĩa Xã hội.</figcaption>
+        </figure>
+
+        <figure class="full-bleed-photo">
+          <picture>
+            <source srcset="images/webp/vietnamsauthongnhat2.webp" type="image/webp" />
+            <img src="images/vietnamsauthongnhat2.jpg" alt="Đoàn tàu thống nhất được nhân dân chào đón" loading="lazy" decoding="async" width="1600" height="900" />
+          </picture>
+          <figcaption>Nhân dân hai miền chào đón tàu thống nhất, biểu tượng sống động của non sông liền một dải.</figcaption>
+        </figure>
+
+        <figure class="full-bleed-photo">
+          <picture>
+            <source srcset="images/webp/vietnamsauthongnhat.webp" type="image/webp" />
+            <img src="images/vietnamsauthongnhat.jpg" alt="Nhân dân tham gia bầu cử trong thời kỳ sau thống nhất" loading="lazy" decoding="async" width="1600" height="900" />
+          </picture>
+          <figcaption>Không khí bầu cử rộng khắp thể hiện tinh thần làm chủ tập thể và củng cố thể chế sau thống nhất.</figcaption>
+        </figure>
+
+        <figure class="full-bleed-photo">
+          <picture>
+            <source srcset="images/webp/daihoi4-2.webp" type="image/webp" />
+            <img src="images/daihoi4-2.jpg" alt="Lãnh đạo thăm lớp học thiếu nhi trong giai đoạn xây dựng đất nước" loading="lazy" decoding="async" width="1600" height="900" />
+          </picture>
+          <figcaption>Giáo dục và chăm lo thế hệ trẻ là nội dung quan trọng trong mục tiêu phát triển xã hội sau chiến tranh.</figcaption>
+        </figure>
+
+        <figure class="full-bleed-photo">
+          <picture>
+            <source srcset="images/webp/daihoi4-3.webp" type="image/webp" />
+            <img src="images/daihoi4-3.jpg" alt="Hợp tác khoa học kỹ thuật với chuyến bay vũ trụ mang dấu ấn Việt Nam" loading="lazy" decoding="async" width="1600" height="900" />
+          </picture>
+          <figcaption>Khoa học kỹ thuật được xem là then chốt, tạo nền cho các bước tiến mới của đất nước trong thập niên tiếp theo.</figcaption>
+        </figure>
+      </div>
+      <p class="source-note">
+        Nguồn tư liệu tham khảo: <a href="https://www.vietnamplus.vn/dai-hoi-lan-thu-iv-cua-dang-thong-nhat-to-quoc-ca-nuoc-tien-len-cnxh-post690171.vnp" target="_blank" rel="noopener noreferrer">VietnamPlus - Đại hội lần thứ IV của Đảng</a>.
+      </p>
+    </div>
+
   </main>
 
   <footer class="site-footer">
@@ -486,6 +596,7 @@
     <p>Dự án mô hình sa bàn &mdash; 2026</p>
   </footer>
 
+  <script src="fireworks-timeline.js"></script>
   <script>
     (function () {
       'use strict';
@@ -510,6 +621,22 @@
           var href = this.getAttribute('href');
           overlay.classList.add('active');
           setTimeout(function () { window.location.href = href; }, 400);
+        });
+      }
+
+      if (window.initTimelineFireworks) {
+        window.initTimelineFireworks({
+          canvasId: 'timelineFireworks',
+          beatMs: 760,
+          phases: [
+            { watchSelector: '.banner', anchorSelector: '.banner' },
+            { watchSelector: '#b1', anchorSelector: '#b1' },
+            { watchSelector: '#b2', anchorSelector: '#b2' },
+            { watchSelector: '#b3', anchorSelector: '#b3' },
+            { watchSelector: '#b4', anchorSelector: '#b4' },
+            { watchSelector: '#b5', anchorSelector: '#b5' },
+            { watchSelector: '#b6', anchorSelector: '#b6' }
+          ]
         });
       }
     })();
